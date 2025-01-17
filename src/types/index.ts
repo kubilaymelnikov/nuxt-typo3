@@ -103,6 +103,7 @@ export declare type T3Sites = {
 
 export interface T3Options extends T3Site {
   sites?: T3Sites[]
+  targetRequestHeader?: string // TODO: alternative 'requestHeaderToMatch'?
 }
 
 export interface T3RedirectData {

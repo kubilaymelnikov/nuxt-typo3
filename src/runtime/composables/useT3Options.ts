@@ -26,13 +26,14 @@ export const useT3Options = (): {
   const currentSiteOptions = useT3OptionsState() as Ref<T3Site>
 
   const getSiteOptions = (domain?: string): T3Site => {
-    const { sites } = options
+    const { sites, targetRequestHeader } = options
 
     if (!sites || !sites.length) {
       return options
     }
-
-    const host = domain || useRequestHeaders()?.host || window?.location.origin
+    const requestHeaders = useRequestHeaders()
+    const requestHeader = targetRequestHeader && requestHeaders?.[targetRequestHeader] || useRequestHeaders()?.host
+    const host = domain || requestHeader || window?.location.origin
     const rawHost = getRawHost(host)
 
     const site = sites.find(({ hostname }) => {
