@@ -32,7 +32,7 @@ export const useT3Options = (): {
       return options
     }
     const requestHeaders = useRequestHeaders()
-    const requestHeader = targetRequestHeader && requestHeaders?.[targetRequestHeader] || useRequestHeaders()?.host
+    const requestHeader = requestHeaders?.[targetRequestHeader || 'host']
     const host = domain || requestHeader || window?.location.origin
     const rawHost = getRawHost(host)
 
